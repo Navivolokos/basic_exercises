@@ -12,8 +12,14 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
 
+list={}
+for name in students:
+    povtor = students.count(name)    
+    list[name.get('first_name')] = povtor    
+for a in list:
+    print(a, ": ", list[a])   
+    
 
 # Задание 2
 # Дан список учеников, нужно вывести самое часто повторящееся имя
@@ -26,7 +32,14 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Оля'},
 ]
-# ???
+
+list={}
+for name in students:
+    povtor = students.count(name)    
+    list[name.get('first_name')] = povtor
+dic =list
+max_name=max(dic, key=dic.get)
+print("Самое частое имя среди учеников: ", max_name)
 
 
 # Задание 3
@@ -51,9 +64,17 @@ school_students = [
         {'first_name': 'Саша'},
     ],
 ]
-# ???
 
-
+for class1 in school_students:   
+    list={}
+    for name in class1:        
+        povtor = class1.count(name)        
+        for i in range(len(school_students)):
+            list[name.get('first_name')] = povtor
+            dic =list
+            max_name=max(dic, key=dic.get)                   
+    print(f'Самое частое имя в классе {school_students.index(class1)+1}:  {max_name}')
+        
 # Задание 4
 # Для каждого класса нужно вывести количество девочек и мальчиков в нём.
 # Пример вывода:
@@ -72,9 +93,22 @@ is_male = {
     'Миша': True,
     'Даша': False,
 }
-# ???
 
-
+for study in school: # перебираем классы
+	print(f"В классе {study['class']}: ", end="")
+	male_num=0
+	female_num=0
+	for stud in study['students']: # перебираем студентов
+		if is_male.get(stud['first_name'])==False: # если женский пол
+			female_num=female_num+1
+		if is_male.get(stud['first_name'])==True: # если мужской пол
+			male_num=male_num+1
+	itog=f"{female_num} девочек и {male_num} мальчиков"
+	if male_num+female_num==len(study['students']):
+		print(itog)
+	
+    
+print("--------------------------------")
 # Задание 5
 # По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
 # Пример вывода:
@@ -91,5 +125,18 @@ is_male = {
     'Олег': True,
     'Миша': True,
 }
-# ???
 
+
+for study in school: 
+    male_num=0
+    female_num=0
+    for stud in study['students']:
+        if is_male.get(stud['first_name'])==False:
+            female_num=female_num+1
+        if is_male.get(stud['first_name'])==True:
+            male_num=male_num+1
+        if female_num > male_num:
+            itog=f"Больше всего мальчиков"
+        if male_num < female_num:
+            itog=f"Больше всего девочек"
+    print(f"В классе {study['class']}: {itog} ")
