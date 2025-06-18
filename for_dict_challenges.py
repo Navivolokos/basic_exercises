@@ -98,7 +98,7 @@ for study in school:
 	print(f"В классе {study['class']}: ", end="")
 	male_num=0
 	female_num=0
-	for stud in study['students']: # перебираем студентов
+	for stud in study['students']:
 		if is_male.get(stud['first_name'])==False:
 			female_num=female_num+1
 		if is_male.get(stud['first_name'])==True:
