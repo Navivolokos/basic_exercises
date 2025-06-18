@@ -94,14 +94,14 @@ is_male = {
     'Даша': False,
 }
 
-for study in school: # перебираем классы
+for study in school:
 	print(f"В классе {study['class']}: ", end="")
 	male_num=0
 	female_num=0
 	for stud in study['students']: # перебираем студентов
-		if is_male.get(stud['first_name'])==False: # если женский пол
+		if is_male.get(stud['first_name'])==False:
 			female_num=female_num+1
-		if is_male.get(stud['first_name'])==True: # если мужской пол
+		if is_male.get(stud['first_name'])==True:
 			male_num=male_num+1
 	itog=f"{female_num} девочек и {male_num} мальчиков"
 	if male_num+female_num==len(study['students']):
