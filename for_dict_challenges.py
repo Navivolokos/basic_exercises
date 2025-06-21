@@ -13,12 +13,14 @@ students = [
     {'first_name': 'Петя'},
 ]
 
-list={}
-for name in students:
-    povtor = students.count(name)    
-    list[name.get('first_name')] = povtor    
-for a in list:
-    print(a, ": ", list[a])   
+names_count = {}
+for row in students:
+	name = row.get('first_name')
+	if name not in names_count:
+		names_count[name] =0
+	names_count[name] +=1
+for nam in names_count:
+	print(nam, ": ", names_count[nam])   
     
 
 # Задание 2
@@ -33,11 +35,13 @@ students = [
     {'first_name': 'Оля'},
 ]
 
-list={}
+dic={}
 for name in students:
-    povtor = students.count(name)    
-    list[name.get('first_name')] = povtor
-dic =list
+    povtor = students.count(name)
+ 
+    dic[name.get('first_name')] = povtor
+print(povtor)
+print(dic)
 max_name=max(dic, key=dic.get)
 print("Самое частое имя среди учеников: ", max_name)
 
@@ -66,12 +70,12 @@ school_students = [
 ]
 
 for class1 in school_students:   
-    list={}
+    listok={}
     for name in class1:        
         povtor = class1.count(name)        
         for i in range(len(school_students)):
-            list[name.get('first_name')] = povtor
-            dic =list
+            listok[name.get('first_name')] = povtor
+            dic =listok
             max_name=max(dic, key=dic.get)                   
     print(f'Самое частое имя в классе {school_students.index(class1)+1}:  {max_name}')
         
@@ -84,7 +88,7 @@ for class1 in school_students:
 school = [
     {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
     {'class': '2б', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
-    {'class': '2в', 'students': [{'first_name': 'Даша'}, {'first_name': 'Олег'}, {'first_name': 'Маша'}]},
+    {'class': '2в', 'students': [{'first_name': 'Даша'}, {'first_name': 'Олег'}, {'first_name': 'Маша'}, {'first_name': 'Николай'}]},
 ]
 is_male = {
     'Олег': True,
@@ -94,21 +98,20 @@ is_male = {
     'Даша': False,
 }
 
-for study in school:
-	print(f"В классе {study['class']}: ", end="")
-	male_num=0
-	female_num=0
-	for stud in study['students']:
-		if is_male.get(stud['first_name'])==False:
-			female_num=female_num+1
-		if is_male.get(stud['first_name'])==True:
-			male_num=male_num+1
-	itog=f"{female_num} девочек и {male_num} мальчиков"
-	if male_num+female_num==len(study['students']):
-		print(itog)
-	
-    
-print("--------------------------------")
+for study in school: 
+    print(f"В классе {study['class']}: ", end="")
+    male_num=0
+    female_num=0
+    for stud in study['students']: 
+        if is_male.get(stud['first_name'])is False: 
+            female_num=female_num+1
+        if is_male.get(stud['first_name'])is True: 
+            male_num=male_num+1
+    itog=f"{female_num} девочек и {male_num} мальчиков"
+    if male_num+female_num==len(study['students']):
+        print(itog)
+    else:
+        print(itog, f"и {len(study['students'])-(male_num+female_num)} кто то еще")
 # Задание 5
 # По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
 # Пример вывода:
@@ -116,8 +119,8 @@ print("--------------------------------")
 # Больше всего девочек в классе 2a
 
 school = [
-    {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
-    {'class': '3c', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
+    {'class': '2a', 'students': [{'first_name': 'Оля'}, {'first_name': 'Олег'}]},
+    {'class': '3c', 'students': [{'first_name': 'Оля'}, {'first_name': 'Оля'}]},
 ]
 is_male = {
     'Маша': False,
@@ -126,17 +129,22 @@ is_male = {
     'Миша': True,
 }
 
-
 for study in school: 
-    male_num=0
-    female_num=0
-    for stud in study['students']:
-        if is_male.get(stud['first_name'])==False:
-            female_num=female_num+1
-        if is_male.get(stud['first_name'])==True:
-            male_num=male_num+1
-        if female_num > male_num:
-            itog=f"Больше всего мальчиков"
-        if male_num < female_num:
-            itog=f"Больше всего девочек"
-    print(f"В классе {study['class']}: {itog} ")
+	male_num=0
+	female_num=0
+	for stud in study['students']:
+		if is_male.get(stud['first_name']) is False:
+			female_num=female_num+1
+		if is_male.get(stud['first_name'])is True:
+			male_num=male_num+1
+		if female_num < male_num:
+			itog=f"Больше всего мальчиков"
+		if male_num < female_num:
+			itog=f"Больше всего девочек"
+		if male_num == female_num:
+			itog=f"Равное количество"
+	print(f"В классе {study['class']}: {itog} ")
+    
+    
+    
+    
