@@ -117,10 +117,10 @@ for study in school:
 # Пример вывода:
 # Больше всего мальчиков в классе 3c
 # Больше всего девочек в классе 2a
-
+from collections import Counter
 school = [
-    {'class': '2a', 'students': [{'first_name': 'Оля'}, {'first_name': 'Олег'}]},
-    {'class': '3c', 'students': [{'first_name': 'Оля'}, {'first_name': 'Оля'}]},
+    {'class': '2a', 'students': [{'first_name': 'Олег'}, {'first_name': 'Оля'},{'first_name': 'Маша'}, {'first_name': 'Миша'},{'first_name': 'Олег'}, {'first_name': 'Олег'}, {'first_name': 'Олег'}]},
+    {'class': '3c', 'students': [{'first_name': 'Оля'}, {'first_name': 'Маша'},{'first_name': 'Миша'},{'first_name': 'Миша'},{'first_name': 'Миша'}, {'first_name': 'Миша'}]}
 ]
 is_male = {
     'Маша': False,
@@ -129,22 +129,59 @@ is_male = {
     'Миша': True,
 }
 
-for study in school: 
-	male_num=0
+girls={}
+boys={}
+for study in school: 	
 	female_num=0
-	for stud in study['students']:
+	male_num=0
+	for stud in study['students']:				
+				
+		if is_male.get(stud['first_name'])is True:
+			male_num= male_num+1
 		if is_male.get(stud['first_name']) is False:
 			female_num=female_num+1
-		if is_male.get(stud['first_name'])is True:
-			male_num=male_num+1
-		if female_num < male_num:
-			itog=f"Больше всего мальчиков"
-		if male_num < female_num:
-			itog=f"Больше всего девочек"
-		if male_num == female_num:
-			itog=f"Равное количество"
-	print(f"В классе {study['class']}: {itog} ")
-    
-    
-    
-    
+		
+		boys[study['class']] = male_num
+		girls.update({study['class']:female_num})
+	
+	
+#print("мальчиков", boys)
+#print("девочек", girls)	
+
+values = girls.values()
+counterg = Counter(values)
+counter_girls= (dict(counterg))
+for key, value in counter_girls.items():
+	max_girls = max(girls, key=girls.get) 
+	if value <= 1:
+		print(f'Больше всего девочек в классе {max_girls}')
+		break
+	else:	
+		print(f'Одинаковое количество девочек в группах')	
+	
+values = boys.values()
+counter = Counter(values)
+counter_boys= (dict(counter))
+for key, value in counter_boys.items():
+	max_boys = max(boys, key=boys.get)
+	if value <= 1:
+		print(f'Больше всего мальчиков в классе {max_boys}')
+		break
+	else:	
+		print(f'Одинаковое количество мальчиков в группах')
+	
+		
+
+
+
+	
+	
+	
+	
+	
+	
+		
+		
+		
+	
+
