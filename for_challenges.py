@@ -2,7 +2,8 @@
 # Необходимо вывести имена всех учеников из списка с новой строки
 
 names = ['Оля', 'Петя', 'Вася', 'Маша']
-# ???
+for name in names:
+    print(f'{name}')
 
 
 # Задание 2
@@ -12,9 +13,10 @@ names = ['Оля', 'Петя', 'Вася', 'Маша']
 # Петя: 4
 
 names = ['Оля', 'Петя', 'Вася', 'Маша']
-# ???
-
-
+for name in names:
+    dlina=len(name)
+    print(f'{name} : {dlina} ')
+   
 # Задание 3
 # Необходимо вывести имена всех учеников из списка, рядом с именем вывести пол ученика
 
@@ -24,8 +26,13 @@ is_male = {
     'Вася': True,
     'Маша': False,
 }
-names = ['Оля', 'Петя', 'Вася', 'Маша']
-# ???
+names = ['Оля', 'Петя', 'Вася', 'Маша', 'Вася', 'Петя', 'Оля', 'Оля', 'Коля', 'Федор']
+for name in names:	
+	if name in is_male:		 
+		gender='Мужчина' if is_male[name] is True else 'Женщина'
+	if name not in is_male:	 
+		gender='Не найден'
+	print (name, " - ", gender)
 
 
 # Задание 4
@@ -40,8 +47,10 @@ groups = [
     ['Вася', 'Маша', 'Саша', 'Женя'],
     ['Оля', 'Петя', 'Гриша'],
 ]
-# ???
-
+print("Всего", len(groups), "группы.")
+for group_number, group in enumerate(groups, start=1):
+	total_students=len(group)
+	print(f'Группа {group_number}: {total_students} ученика')
 
 # Задание 5
 # Для каждой пары учеников нужно с новой строки перечислить учеников, которые в неё входят
@@ -54,4 +63,26 @@ groups = [
     ['Оля', 'Петя', 'Гриша'],
     ['Вася', 'Маша', 'Саша', 'Женя'],
 ]
-# ???
+for num_group in range(len(groups)):
+  
+    gr=f'Группа {num_group+1}:'
+    print(gr, ', '.join(map(str,groups[num_group])))
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

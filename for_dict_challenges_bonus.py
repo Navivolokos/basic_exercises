@@ -66,5 +66,95 @@ def generate_chat_history():
     return messages
 
 
-if __name__ == "__main__":
-    print(generate_chat_history())
+
+def max_senter():
+    spisok=generate_chat_history()
+    list_user_sent=[]
+    for mess in spisok:
+        for sent_by, id_user_sent in mess.items():
+            if sent_by=="sent_by":
+                list_user_sent.append(id_user_sent)
+                itog=str(f'ID пользователя, который написал больше всех сообщений {max(set(list_user_sent), key=list_user_sent.count)}')
+                return itog
+print(max_senter())
+
+def max_answer():
+    spisok=generate_chat_history()
+    list_user_sent=[]
+    for mess in spisok:
+        for sent_by, id_user_sent in mess.items():
+            if sent_by=="sent_by" and id_user_sent != None:
+                list_user_sent.append(id_user_sent)
+                itog=str(f'ID пользователя, который получил больше всего ответов {max(set(list_user_sent), key=list_user_sent.count)}')
+                return itog
+print(max_answer())  
+
+print("--------------------------------------\n\n\n")
+
+def time_mess():
+    spisok=generate_chat_history()
+    time_sent=[]
+    for mess in spisok:
+	    for sent_at, time in mess.items():
+		    if sent_at=="sent_at":
+			    time_sent.append(time)
+    time_12=0
+    time_12_18=0
+    time_18=0
+    for times in time_sent:
+		
+        if times.hour >0< 12:
+            time_12= time_12+1 
+ 
+        if times.hour  >12<18:
+            time_12_18= time_12_18+1
+        if times.hour  >18<24:
+            time_18= time_18+1   
+
+    return print(f'Утром: {time_12} Днем: {time_12_18} Вечером: {time_18}')
+time_mess()
+
+
+            
+"""id_mess()
+
+
+spisok=generate_chat_history()
+list_user_sent=[]
+
+for mess in spisok:
+	for sent_by, id_user_sent in mess.items():
+		if sent_by=="sent_by":
+			list_user_sent.append(id_user_sent)
+	
+unique_user_list=list(set(list_user_sent))
+print('------------------------------------------')
+print('Список уникальных id\n\n')
+print(unique_user_list)
+
+	
+dic={}
+
+for row in spisok:
+	for id_user in unique_user_list:	
+		fename =row.get("sent_by")
+		name = row.get("seen_by")
+		if id_user == fename: 
+			dic[id_user]=name
+print('------------------------------------------')
+print('Список ответов к уникальным id\n\n')
+print(dic)"""
+	
+
+
+
+
+
+#if __name__ == "__main__":
+    #print(generate_chat_history())
+     
+    
+    
+    
+    
+    
